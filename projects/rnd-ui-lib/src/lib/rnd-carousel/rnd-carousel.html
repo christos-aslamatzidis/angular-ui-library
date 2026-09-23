@@ -1,0 +1,48 @@
+<div
+  class="relative overflow-hidden rounded-2xl border border-border"
+  tabindex="0"
+  role="region"
+  aria-roledescription="carousel"
+  (mouseenter)="isPaused.set(true)"
+  (mouseleave)="isPaused.set(false)"
+  (focusin)="isPaused.set(true)"
+  (focusout)="isPaused.set(false)"
+  (keydown)="onKeydown($event)"
+>
+  <div class="flex transition-transform duration-300 ease-out" [style.transform]="trackTransform()">
+    <ng-content />
+  </div>
+
+  <button
+    type="button"
+    class="absolute top-1/2 left-3 -translate-y-1/2 inline-flex items-center justify-center leading-[0] rounded-full bg-primary/90 p-2 text-white shadow-[0_0_16px_-4px_rgba(247,147,26,0.7)] transition-colors hover:bg-primary disabled:cursor-not-allowed disabled:opacity-30"
+    aria-label="Previous slide"
+    [disabled]="!canGoPrevious()"
+    (click)="previous()"
+  >
+    <rnd-icon name="chevron-left" [size]="18" />
+  </button>
+  <button
+    type="button"
+    class="absolute top-1/2 right-3 -translate-y-1/2 inline-flex items-center justify-center leading-[0] rounded-full bg-primary/90 p-2 text-white shadow-[0_0_16px_-4px_rgba(247,147,26,0.7)] transition-colors hover:bg-primary disabled:cursor-not-allowed disabled:opacity-30"
+    aria-label="Next slide"
+    [disabled]="!canGoNext()"
+    (click)="next()"
+  >
+    <rnd-icon name="chevron-right" [size]="18" />
+  </button>
+
+  <div class="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
+    @for (slide of slides(); track slide; let i = $index) {
+      <button
+        type="button"
+        class="h-1.5 w-1.5 rounded-full transition-colors"
+        [class]="i === activeIndex() ? 'bg-primary' : 'bg-white/30'"
+        [attr.aria-label]="'Go to slide ' + (i + 1)"
+        (click)="goTo(i)"
+      ></button>
+    }
+  </div>
+
+  <span class="sr-only" aria-live="polite">Slide {{ activeIndex() + 1 }} of {{ slides().length }}</span>
+</div>

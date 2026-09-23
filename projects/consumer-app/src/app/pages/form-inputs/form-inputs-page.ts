@@ -15,6 +15,7 @@ import {
   RndSwitch,
   RndTagInput,
   RndTextarea,
+  RndTimePicker,
 } from 'rnd-ui-lib';
 
 @Component({
@@ -33,6 +34,7 @@ import {
     RndSwitch,
     RndFormField,
     RndSlider,
+    RndTimePicker,
   ],
   selector: 'app-form-inputs-page',
   styleUrl: './form-inputs-page.css',

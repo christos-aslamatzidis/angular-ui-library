@@ -1,20 +1,30 @@
-<div [class]="containerClasses()">
-  <select
-    [value]="value()"
+<div class="relative">
+  <button
+    #trigger
+    type="button"
+    [attr.popovertarget]="panelId"
     [disabled]="disabled()"
-    (change)="onChange($event)"
-    class="w-full appearance-none bg-transparent pr-6 text-sm text-white focus:outline-none disabled:cursor-not-allowed"
+    [class]="containerClasses()"
   >
-    @if (placeholder()) {
-      <option value="" disabled>{{ placeholder() }}</option>
-    }
+    <span [class.text-white/30]="!selectedLabel()">{{ selectedLabel() || placeholder() }}</span>
+    <rnd-icon name="chevron-down" [size]="16" class="pointer-events-none text-white/50" />
+  </button>
+  <div
+    #panel
+    [id]="panelId"
+    popover
+    (toggle)="onToggle($event)"
+    class="m-0 max-h-64 overflow-y-auto rounded-xl border border-border bg-[#0f1115]/95 p-1.5 text-foreground backdrop-blur-lg"
+  >
     @for (option of options(); track option.value) {
-      <option [value]="option.value">{{ option.label }}</option>
+      <button
+        type="button"
+        class="flex w-full items-center rounded-lg px-3 py-2 text-left text-sm transition-colors hover:bg-white/10"
+        [class.bg-white/10]="option.value === value()"
+        (click)="chooseOption(option)"
+      >
+        {{ option.label }}
+      </button>
     }
-  </select>
-  <rnd-icon
-    name="chevron-down"
-    [size]="16"
-    class="pointer-events-none absolute right-4 text-white/50"
-  />
+  </div>
 </div>

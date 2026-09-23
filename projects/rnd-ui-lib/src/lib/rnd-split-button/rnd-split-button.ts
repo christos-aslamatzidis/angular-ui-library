@@ -1,11 +1,16 @@
 import { Component, ElementRef, input, output, viewChild } from '@angular/core';
 import { RndIcon } from '../rnd-icon/rnd-icon';
+import { positionPopoverPanel } from '../popover-position';
 
 @Component({
   imports: [RndIcon],
   selector: 'rnd-split-button',
   styleUrl: './rnd-split-button.css',
   templateUrl: './rnd-split-button.html',
+  host: {
+    '(window:scroll)': 'onReposition()',
+    '(window:resize)': 'onReposition()',
+  },
 })
 export class RndSplitButton {
   label = input.required<string>();
@@ -24,9 +29,20 @@ export class RndSplitButton {
       return;
     }
 
-    const rect = this.trigger().nativeElement.getBoundingClientRect();
-    panelEl.style.left = `${rect.left}px`;
-    panelEl.style.top = `${rect.bottom + 4}px`;
+    this.reposition();
     panelEl.showPopover();
+  }
+
+  protected onReposition(): void {
+    if (this.panel().nativeElement.matches(':popover-open')) {
+      this.reposition();
+    }
+  }
+
+  private reposition(): void {
+    positionPopoverPanel(
+      this.panel().nativeElement,
+      this.trigger().nativeElement.getBoundingClientRect(),
+    );
   }
 }

@@ -5,6 +5,10 @@ import { Component, ElementRef, viewChild } from '@angular/core';
   selector: 'rnd-context-menu',
   styleUrl: './rnd-context-menu.css',
   templateUrl: './rnd-context-menu.html',
+  host: {
+    '(window:scroll)': 'onDismiss()',
+    '(window:resize)': 'onDismiss()',
+  },
 })
 export class RndContextMenu {
   private panel = viewChild.required<ElementRef<HTMLElement>>('panel');
@@ -16,5 +20,13 @@ export class RndContextMenu {
     panelEl.style.left = `${event.clientX}px`;
     panelEl.style.top = `${event.clientY}px`;
     panelEl.showPopover();
+  }
+
+  protected onDismiss(): void {
+    const panelEl = this.panel().nativeElement;
+
+    if (panelEl.matches(':popover-open')) {
+      panelEl.hidePopover();
+    }
   }
 }

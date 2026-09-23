@@ -144,6 +144,41 @@
     </section>
 
     <section
+      id="carousel"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6 lg:col-span-2"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Carousel</h2>
+      <div class="max-w-xl">
+        <rnd-carousel [loop]="true" [interval]="4000">
+          <rnd-carousel-slide>
+            <div
+              class="flex h-48 flex-col items-center justify-center gap-1 bg-gradient-to-br from-secondary to-primary p-6 text-center"
+            >
+              <p class="font-heading text-xl font-semibold text-white">Bitcoin</p>
+              <p class="text-sm text-white/80">The original decentralized currency.</p>
+            </div>
+          </rnd-carousel-slide>
+          <rnd-carousel-slide>
+            <div
+              class="flex h-48 flex-col items-center justify-center gap-1 bg-gradient-to-br from-primary to-accent p-6 text-center"
+            >
+              <p class="font-heading text-xl font-semibold text-white">Lightning</p>
+              <p class="text-sm text-white/80">Instant, low-fee payments on Layer 2.</p>
+            </div>
+          </rnd-carousel-slide>
+          <rnd-carousel-slide>
+            <div
+              class="flex h-48 flex-col items-center justify-center gap-1 bg-gradient-to-br from-surface to-secondary p-6 text-center"
+            >
+              <p class="font-heading text-xl font-semibold text-white">Self-Custody</p>
+              <p class="text-sm text-white/80">Your keys, your coins.</p>
+            </div>
+          </rnd-carousel-slide>
+        </rnd-carousel>
+      </div>
+    </section>
+
+    <section
       id="divider"
       class="scroll-mt-24 flex flex-col gap-6 rounded-2xl border border-border p-6 lg:col-span-2"
     >
