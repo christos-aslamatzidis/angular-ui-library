@@ -1,0 +1,74 @@
+name: Release rnd-ui-lib
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'projects/rnd-ui-lib/**'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build library
+        run: npm run build:lib
+
+      - name: Determine version
+        id: version
+        run: |
+          VERSION=$(node -p "require('./dist/rnd-ui-lib/package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Check if tag already exists
+        id: tagcheck
+        run: |
+          if git rev-parse -q --verify "refs/tags/v${{ steps.version.outputs.version }}" >/dev/null; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish dist branch and tag
+        if: steps.tagcheck.outputs.exists == 'false'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin dist || true
+
+          if git show-ref --verify --quiet refs/remotes/origin/dist; then
+            git worktree add -B dist dist-publish origin/dist
+          else
+            git worktree add --orphan -b dist dist-publish
+          fi
+
+          cd dist-publish
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp -r ../dist/rnd-ui-lib/. .
+
+          git add -A
+          git commit -m "Release v${VERSION}"
+          git tag "v${VERSION}"
+          git push origin HEAD:dist
+          git push origin "v${VERSION}"

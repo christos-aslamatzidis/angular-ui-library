@@ -97,6 +97,24 @@ Vitest 4 + jsdom, run through the Angular builder `@angular/build:unit-test`. Th
 
 `tsconfig.spec.json` sets `"types": ["vitest/globals"]`, so `describe`/`it`/`expect` are global — **spec files do not import from `vitest`**. Standalone components go in TestBed `imports`, never `declarations`, and specs use `await fixture.whenStable()` rather than `fixture.detectChanges()`.
 
+## Publishing & consuming via GitHub
+
+There is no npm registry account for `rnd-ui-lib` — it's distributed directly from the GitHub repo instead. `.github/workflows/release-lib.yml` runs on every push to `main` that touches `projects/rnd-ui-lib/**`:
+
+1. Builds the library (`npm run build:lib`).
+2. Reads the version from the generated `dist/rnd-ui-lib/package.json`.
+3. If a `vX.Y.Z` tag for that version doesn't already exist yet, it force-syncs an orphan `dist` branch to the fresh `dist/rnd-ui-lib` build output (so `dist` never carries source history) and pushes a matching `vX.Y.Z` tag.
+
+**To cut a release:** bump `version` in `projects/rnd-ui-lib/package.json` and push to `main`. Pushing again without a version bump is a no-op (the tag-exists check skips the publish step).
+
+**Consumers install a pinned tag directly**, no registry needed:
+
+```json
+"rnd-ui-lib": "github:christos-aslamatzidis/angular-ui-library#v0.0.1"
+```
+
+That tag's commit *is* the built package (ng-packagr output + `styles.css` at the root, same as `dist/rnd-ui-lib` here), so `npm install` resolves it like any other npm package — no build step runs on the consumer's machine. Consumers still need matching peer deps (`@angular/common`, `@angular/core`, `@angular/router` `^22.1.0` or whatever the tagged version requires); `qrcode`/`tslib` install automatically as regular `dependencies`. Always pin to a `v*` tag, not `#main` or `#dist`, to avoid floating installs.
+
 ## Conventions & gotchas
 
 - **`"strict": true` is absent** from the root `tsconfig.json`, as are `strictTemplates` and `moduleResolution`. But `noPropertyAccessFromIndexSignature`, `noImplicitOverride`, `noImplicitReturns`, `noFallthroughCasesInSwitch`, and `isolatedModules` are all on — index-signature access in particular trips people up.
