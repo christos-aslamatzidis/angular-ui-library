@@ -1,64 +1,101 @@
-# RndUiLib
+# rnd-ui-lib
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.0.
+A publishable, Tailwind CSS v4–styled Angular component library implementing a dark "Bitcoin DeFi" design system — roughly 70 standalone, signal-based components (buttons, form controls, overlays, feedback, layout, navigation, and wallet-specific pieces like transaction rows and QR codes) for building fintech-style Angular apps.
 
-## Code scaffolding
+Built with Angular 22 standalone components and signal `input()`/`model()`/`output()` APIs — no NgModules, no `cva`/`clsx`, no icon library dependency. Every component is documented in [`docs/`](./docs), linked from the table below.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Requirements
 
-```bash
-ng generate component component-name
+- Angular `^22.1.0` (`@angular/common`, `@angular/core`, `@angular/router` are peer dependencies)
+- Tailwind CSS is **not** a peer dependency — the library ships its CSS pre-built, so consuming apps don't need Tailwind installed at all.
+
+## Installation & setup
+
+This library currently lives inside the `rnd-angular` monorepo and isn't published to a registry yet. Two ways to consume it:
+
+**Within this workspace** (e.g. from `consumer-app`, or another app added to this workspace): it's already wired up — `node_modules/rnd-ui-lib` is a directory link to `dist/rnd-ui-lib`, and the root `tsconfig.json` maps the `rnd-ui-lib` import specifier to the built output. Just run `npm run build:lib` (see [Development](#development) below) after any change to the library, then `import { RndButton, ... } from 'rnd-ui-lib';` and add `@import 'rnd-ui-lib/styles.css';` to your app's global stylesheet.
+
+**As a standalone package in another project**: build it (`npm run build:lib` from the repo root), then either `npm install <path-to>/dist/rnd-ui-lib` (local path/tarball) or `cd dist/rnd-ui-lib && npm publish` to publish it, then install normally. Once installed:
+
+```ts
+import { RndButton, RndCard } from 'rnd-ui-lib';
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
+```css
+/* your global styles.css */
+@import 'rnd-ui-lib/styles.css';
 ```
 
-## Building
+Importing the stylesheet gives you the dark theme's `background`/`foreground` colors and fonts automatically (see [Theming](#theming)) — no extra setup needed.
 
-To build the library, run:
+## Quick start
 
-```bash
-ng build rnd-ui-lib
+```ts
+import { Component } from '@angular/core';
+import { RndButton, RndCard } from 'rnd-ui-lib';
+
+@Component({
+  selector: 'app-example',
+  imports: [RndButton, RndCard],
+  template: `
+    <rnd-card>
+      <div rndCardContent class="p-6">
+        <h3 class="font-heading text-xl font-semibold">Send Bitcoin</h3>
+        <rnd-button variant="primary" (click)="send()">Send</rnd-button>
+      </div>
+    </rnd-card>
+  `,
+})
+export class ExampleComponent {
+  send() {
+    /* ... */
+  }
+}
 ```
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
+## Theming
 
-### Publishing the Library
+The whole library is **dark-mode only** — there's no light theme and no toggle. All design tokens (colors, fonts) are defined as a single Tailwind v4 `@theme` block in `src/theme.css` and exposed as ordinary Tailwind utility classes (`bg-primary`, `text-muted`, `font-heading`, etc.), not raw CSS custom properties. Full token reference: [`docs/foundations.md`](./docs/foundations.md#design-tokens).
 
-Once the project is built, you can publish your library by following these steps:
+## Components
 
-1. Navigate to the `dist` directory:
+Every exported component/service is documented in one of these category files:
 
-   ```bash
-   cd dist/rnd-ui-lib
-   ```
+| Category | Contents | Docs |
+|---|---|---|
+| Foundations | Icon (+ full icon reference), design tokens | [`docs/foundations.md`](./docs/foundations.md) |
+| Buttons & Triggers | Button, SplitButton, DropdownItem, Toggle, SegmentedControl/SegmentedOption, CopyField, Kbd | [`docs/buttons-triggers.md`](./docs/buttons-triggers.md) |
+| Overlays & Popovers | Modal, Sheet, CommandPalette, ContextMenu, DropdownMenu, HoverCard, Tooltip, Popover, Combobox, DatePicker, Calendar, ConfirmService/ConfirmOutlet | [`docs/overlays-popovers.md`](./docs/overlays-popovers.md) |
+| Form Inputs | Input, Textarea, PasswordInput, SearchInput, NumberStepper, InputOtp, TagInput, Select, Checkbox, RadioGroup/RadioOption, Switch, FormField, Slider, TimePicker | [`docs/form-inputs.md`](./docs/form-inputs.md) |
+| Feedback & Status | Alert, ProgressBar, RadialProgress, Sparkline, Skeleton, Spinner, StatCard, Timeline/TimelineItem, EmptyState, RouteProgress, ToastService/ToastOutlet/Toast | [`docs/feedback-status.md`](./docs/feedback-status.md) |
+| Display & Layout | Avatar/AvatarGroup, Badge, Card, Carousel/CarouselSlide, Divider, Accordion/AccordionItem, Collapsible, Table | [`docs/display-layout.md`](./docs/display-layout.md) |
+| Navigation | Breadcrumb, Pagination, Tabs/Tab, Navbar, Sidebar | [`docs/navigation.md`](./docs/navigation.md) |
+| Wallet | AssetRow, QrCode, TransactionItem | [`docs/wallet.md`](./docs/wallet.md) |
 
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
+Each doc covers, per component: selector, a real usage snippet, an inputs table, an outputs table, and notes on anything non-obvious (content-projection slots, required parent/child pairings, services that need an outlet mounted once in your app shell, etc.).
 
-## Running unit tests
+## Development
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Commands below assume the repo root (`rnd-angular/`), not this `projects/rnd-ui-lib/` directory.
 
-```bash
-ng test
-```
+| Task | Command |
+|---|---|
+| Build the library | `npm run build:lib` |
+| Library JS only | `npm run build:lib:ng` |
+| Library CSS only | `npm run build:lib:tailwind` |
+| All tests | `ng test rnd-ui-lib --watch=false` |
+| One spec file | `ng test rnd-ui-lib --watch=false --include=**/rnd-button.spec.ts` |
+| Format | `npx prettier --write .` |
 
-## Running end-to-end tests
+**`npm run build:lib` is two steps and you need both.** `build:lib:ng` (ng-packagr) compiles the TypeScript/templates; `build:lib:tailwind` (a separate `@tailwindcss/cli` invocation) generates `dist/rnd-ui-lib/styles.css` from `src/styles.css`. Running only the ng step leaves the stylesheet missing or stale — the symptom is an unstyled app, not a build error, so it's easy to miss. Always run the combined `npm run build:lib` after changing anything in this library, then rebuild/restart the consumer app to pick it up.
 
-For end-to-end (e2e) testing, run:
+### Adding a new component
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. `projects/rnd-ui-lib/src/lib/<name>/<name>.{ts,html,css,spec.ts}` — folder per component, no `.component.` infix.
+2. Class is `Rnd`-prefixed with no `Component` suffix (`RndButton`); selector `rnd-<name>`.
+3. Standalone by default (no `standalone: true` needed); `imports: []` even when empty; `@Component` keys ordered alphabetically (`imports`, `selector`, `styleUrl`, `templateUrl`).
+4. Style with the `@theme` tokens via ordinary Tailwind utilities — never hardcode hex values.
+5. For variant-driven components, use signal `input()`s plus a `computed()` built from `Record<Variant, string>` lookup tables (see `RndButton` for the canonical pattern) — no `cva`/`clsx`. For icon slots, use named content projection rather than an icon library.
+6. Export it from `projects/rnd-ui-lib/src/public-api.ts`.
+7. Add its entry to the relevant `docs/*.md` file (or a new one, linked from the table above).
+8. `npm run build:lib`.
