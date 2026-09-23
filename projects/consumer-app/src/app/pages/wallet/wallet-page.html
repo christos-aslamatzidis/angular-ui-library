@@ -1,0 +1,61 @@
+<div class="flex flex-col gap-6">
+  <h1 class="font-heading text-3xl font-semibold">Wallet</h1>
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <section
+      id="asset-row"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Asset Row</h2>
+      <div class="flex flex-col divide-y divide-border rounded-xl border border-border">
+        <rnd-asset-row name="Bitcoin" symbol="BTC" balance="0.42" value="$40,536" [delta]="2.4" />
+        <rnd-asset-row name="Ethereum" symbol="ETH" balance="1.85" value="$6,200" [delta]="-1.2" />
+        <rnd-asset-row name="Solana" symbol="SOL" balance="120" value="$18,000" />
+      </div>
+    </section>
+
+    <section
+      id="qr-code"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">QR Code</h2>
+      <rnd-qr-code value="bitcoin:bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq" [size]="200" />
+    </section>
+
+    <section
+      id="transaction-item"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6 lg:col-span-2"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Transaction Item</h2>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div class="rounded-xl border border-border">
+          <rnd-transaction-item
+            direction="in"
+            title="Received"
+            amount="0.02 BTC"
+            status="confirmed"
+            timestamp="2h ago"
+          />
+        </div>
+        <div class="rounded-xl border border-border">
+          <rnd-transaction-item
+            direction="out"
+            title="Sent"
+            amount="0.01 BTC"
+            status="pending"
+            timestamp="10m ago"
+          />
+        </div>
+        <div class="rounded-xl border border-border">
+          <rnd-transaction-item
+            direction="out"
+            title="Sent"
+            amount="0.005 BTC"
+            status="failed"
+            timestamp="1d ago"
+          />
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+<div class="flex flex-col gap-6">
+  <h1 class="font-heading text-3xl font-semibold">Buttons & Triggers</h1>
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <section
+      id="button"
+      class="scroll-mt-24 flex flex-col gap-6 rounded-2xl border border-border p-6 lg:col-span-2"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Button</h2>
+
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Variants</h3>
+        <div class="flex flex-wrap items-center gap-4">
+          <rnd-button variant="primary">Primary</rnd-button>
+          <rnd-button variant="outline">Outline</rnd-button>
+          <rnd-button variant="ghost">Ghost</rnd-button>
+          <rnd-button variant="link">Link</rnd-button>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Sizes</h3>
+        <div class="flex flex-wrap items-center gap-4">
+          <rnd-button size="sm">Small</rnd-button>
+          <rnd-button size="md">Medium</rnd-button>
+          <rnd-button size="lg">Large</rnd-button>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Icons</h3>
+        <div class="flex flex-wrap items-center gap-4">
+          <rnd-button variant="primary">
+            <rnd-icon rndIconLeading name="arrow-right" [size]="16" />
+            Connect Wallet
+          </rnd-button>
+
+          <rnd-button variant="outline">
+            Learn More
+            <rnd-icon rndIconTrailing name="arrow-right" [size]="16" />
+          </rnd-button>
+
+          <rnd-button variant="ghost" [iconOnly]="true" ariaLabel="Close">
+            <rnd-icon rndIconLeading name="close" [size]="16" />
+          </rnd-button>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="split-button"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Split Button</h2>
+      <rnd-split-button label="Send BTC">
+        <rnd-dropdown-item>Send via Lightning</rnd-dropdown-item>
+        <rnd-dropdown-item>Send on-chain</rnd-dropdown-item>
+        <rnd-dropdown-item>Schedule send</rnd-dropdown-item>
+      </rnd-split-button>
+    </section>
+
+    <section
+      id="toggle"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Toggle</h2>
+      <div class="flex items-center gap-3">
+        <rnd-toggle ariaLabel="Star">
+          <rnd-icon name="star" [size]="16" />
+        </rnd-toggle>
+        <rnd-toggle ariaLabel="Pin" [pressed]="true">
+          <rnd-icon name="pin" [size]="16" />
+        </rnd-toggle>
+        <rnd-toggle ariaLabel="Disabled" [disabled]="true">
+          <rnd-icon name="lock" [size]="16" />
+        </rnd-toggle>
+      </div>
+    </section>
+
+    <section
+      id="segmented-control"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Segmented Control</h2>
+      <rnd-segmented-control activeValue="1d">
+        <rnd-segmented-option value="1h">1H</rnd-segmented-option>
+        <rnd-segmented-option value="1d">1D</rnd-segmented-option>
+        <rnd-segmented-option value="1w">1W</rnd-segmented-option>
+        <rnd-segmented-option value="1m">1M</rnd-segmented-option>
+      </rnd-segmented-control>
+    </section>
+
+    <section
+      id="copy-field"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Copy Field</h2>
+      <h3 class="font-heading text-lg text-muted">Full</h3>
+      <rnd-copy-field value="bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq" />
+
+      <h3 class="font-heading text-lg text-muted">Truncated</h3>
+      <rnd-copy-field value="bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq" [truncate]="true" />
+    </section>
+  </div>
+</div>

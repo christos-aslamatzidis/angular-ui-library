@@ -1,0 +1,37 @@
+<div
+  class="relative inline-flex items-center justify-center"
+  [style.width.px]="size()"
+  [style.height.px]="size()"
+>
+  <svg
+    [attr.width]="size()"
+    [attr.height]="size()"
+    [attr.viewBox]="'0 0 ' + size() + ' ' + size()"
+    class="-rotate-90"
+  >
+    <circle
+      [attr.cx]="center()"
+      [attr.cy]="center()"
+      [attr.r]="radius()"
+      fill="none"
+      stroke="currentColor"
+      class="text-surface"
+      [attr.stroke-width]="strokeWidth()"
+    />
+    <circle
+      [attr.cx]="center()"
+      [attr.cy]="center()"
+      [attr.r]="radius()"
+      fill="none"
+      stroke="currentColor"
+      class="text-primary transition-all duration-300"
+      [attr.stroke-width]="strokeWidth()"
+      stroke-linecap="round"
+      [attr.stroke-dasharray]="circumference()"
+      [attr.stroke-dashoffset]="offset()"
+    />
+  </svg>
+  <span class="absolute font-heading text-sm font-semibold text-foreground"
+    >{{ clampedValue() }}%</span
+  >
+</div>

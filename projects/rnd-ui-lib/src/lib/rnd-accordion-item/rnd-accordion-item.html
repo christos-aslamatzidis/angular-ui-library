@@ -1,0 +1,21 @@
+<div>
+  <button
+    type="button"
+    class="flex w-full items-center justify-between px-4 py-3 text-left font-body text-sm font-medium text-foreground transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+    [attr.aria-expanded]="expanded()"
+    (click)="onToggle()"
+  >
+    {{ label() }}
+    <rnd-icon
+      name="chevron-down"
+      [size]="16"
+      class="shrink-0 text-muted transition-transform duration-300"
+      [class.rotate-180]="expanded()"
+    />
+  </button>
+  @if (expanded()) {
+    <div class="px-4 pb-4 text-sm text-muted">
+      <ng-content />
+    </div>
+  }
+</div>

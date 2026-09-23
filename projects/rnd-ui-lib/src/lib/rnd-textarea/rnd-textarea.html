@@ -1,0 +1,10 @@
+<div [class]="containerClasses()">
+  <textarea
+    [rows]="rows()"
+    [value]="value()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    (input)="onInput($event)"
+    class="w-full resize-none bg-transparent text-sm text-white focus:outline-none disabled:cursor-not-allowed placeholder:text-white/30"
+  ></textarea>
+</div>

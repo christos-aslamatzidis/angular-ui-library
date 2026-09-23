@@ -1,0 +1,27 @@
+<nav class="flex items-center gap-1" aria-label="Pagination">
+  <button
+    type="button"
+    [class]="navButtonClasses"
+    [disabled]="page() === 1"
+    (click)="goTo(page() - 1)"
+    aria-label="Previous page"
+  >
+    <rnd-icon name="chevron-left" [size]="16" />
+  </button>
+
+  @for (p of pages(); track p) {
+    <button type="button" [class]="pageButtonClasses(p)" (click)="goTo(p)">
+      {{ p }}
+    </button>
+  }
+
+  <button
+    type="button"
+    [class]="navButtonClasses"
+    [disabled]="page() === totalPages()"
+    (click)="goTo(page() + 1)"
+    aria-label="Next page"
+  >
+    <rnd-icon name="chevron-right" [size]="16" />
+  </button>
+</nav>

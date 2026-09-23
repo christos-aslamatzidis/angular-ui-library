@@ -1,0 +1,17 @@
+<svg
+  [attr.viewBox]="'0 0 ' + width() + ' ' + height()"
+  [attr.width]="width()"
+  [attr.height]="height()"
+  fill="none"
+  preserveAspectRatio="none"
+>
+  <polyline
+    [attr.points]="points()"
+    fill="none"
+    stroke="currentColor"
+    [class]="strokeClasses()"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

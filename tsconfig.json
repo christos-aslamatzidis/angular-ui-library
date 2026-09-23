@@ -11,6 +11,9 @@
     "isolatedModules": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "paths": {
+      "rnd-ui-lib": ["./dist/rnd-ui-lib"]
+    },
     "target": "ES2022",
     "module": "preserve"
   },
@@ -19,5 +22,19 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/rnd-ui-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/rnd-ui-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/consumer-app/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/consumer-app/tsconfig.spec.json"
+    }
+  ]
 }

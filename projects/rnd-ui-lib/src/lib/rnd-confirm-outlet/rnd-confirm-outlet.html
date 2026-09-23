@@ -1,0 +1,18 @@
+<dialog
+  #dialog
+  class="m-auto w-full max-w-sm rounded-2xl border border-border bg-[#0f1115]/95 p-0 text-foreground backdrop-blur-lg backdrop:bg-black/60"
+  (close)="respond(false)"
+>
+  @if (confirmService.current(); as request) {
+    <div class="p-6 pb-4 font-heading text-xl font-semibold">{{ request.title }}</div>
+    @if (request.message) {
+      <div class="px-6 pb-6 text-sm text-muted">{{ request.message }}</div>
+    }
+    <div class="flex justify-end gap-2 border-t border-border p-6">
+      <rnd-button variant="ghost" (click)="respond(false)">{{
+        request.cancelLabel ?? 'Cancel'
+      }}</rnd-button>
+      <rnd-button (click)="respond(true)">{{ request.confirmLabel ?? 'Confirm' }}</rnd-button>
+    </div>
+  }
+</dialog>

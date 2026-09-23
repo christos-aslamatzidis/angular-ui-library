@@ -1,0 +1,13 @@
+<dialog #dialog [class]="dialogClasses()" (close)="onDialogClose()" (click)="onDialogClick($event)">
+  <div class="flex h-full flex-col">
+    <div class="p-6 pb-4 font-heading text-xl font-semibold">
+      <ng-content select="[rndSheetHeader]" />
+    </div>
+    <div class="flex-1 overflow-y-auto px-6 pb-6 text-sm text-muted">
+      <ng-content />
+    </div>
+    <div class="flex justify-end gap-2 border-t border-border p-6">
+      <ng-content select="[rndSheetFooter]" />
+    </div>
+  </div>
+</dialog>

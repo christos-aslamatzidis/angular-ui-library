@@ -1,0 +1,14 @@
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 font-mono text-xs">
+  @for (item of items(); track item.label; let last = $last) {
+    @if (item.href && !last) {
+      <a [href]="item.href" class="text-muted transition-colors hover:text-primary">{{
+        item.label
+      }}</a>
+    } @else {
+      <span [class.text-foreground]="last" [class.text-muted]="!last">{{ item.label }}</span>
+    }
+    @if (!last) {
+      <span class="text-muted/50">/</span>
+    }
+  }
+</nav>

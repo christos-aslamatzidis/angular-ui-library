@@ -1,0 +1,193 @@
+<div class="flex flex-col gap-6">
+  <h1 class="font-heading text-3xl font-semibold">Overlays & Popovers</h1>
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <section
+      id="date-picker"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Date Picker</h2>
+      <rnd-date-picker placeholder="Schedule send date" />
+    </section>
+
+    <section
+      id="modal"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Modal</h2>
+      <rnd-button (click)="modalOpen.set(true)">Open modal</rnd-button>
+    </section>
+
+    <section
+      id="sheet"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Sheet</h2>
+      <rnd-button (click)="sheetOpen.set(true)">Open sheet</rnd-button>
+    </section>
+
+    <section
+      id="command-palette"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Command Palette</h2>
+      <div class="flex items-center gap-3">
+        <rnd-button variant="outline" (click)="commandPaletteOpen.set(true)">
+          Open palette
+        </rnd-button>
+        <span class="text-sm text-muted">or press</span>
+        <rnd-kbd>⌘K</rnd-kbd>
+      </div>
+      @if (commandPaletteLastSelected()) {
+        <p class="text-sm text-muted">
+          Last selected: <span class="text-foreground">{{ commandPaletteLastSelected() }}</span>
+        </p>
+      }
+    </section>
+
+    <section
+      id="confirm"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Confirm Dialog</h2>
+      <rnd-button (click)="askConfirm()">Send BTC</rnd-button>
+      @if (confirmResult()) {
+        <p class="text-sm text-muted">
+          Result: <span class="text-foreground">{{ confirmResult() }}</span>
+        </p>
+      }
+    </section>
+
+    <section
+      id="context-menu"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Context Menu</h2>
+      <rnd-context-menu>
+        <div
+          rndContextMenuTrigger
+          class="flex h-40 w-full items-center justify-center rounded-2xl border border-dashed border-border text-sm text-muted"
+        >
+          Right-click here
+        </div>
+        <rnd-dropdown-item>Copy address</rnd-dropdown-item>
+        <rnd-dropdown-item>View on explorer</rnd-dropdown-item>
+        <rnd-dropdown-item>Remove</rnd-dropdown-item>
+      </rnd-context-menu>
+    </section>
+
+    <section
+      id="dropdown-menu"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Dropdown Menu</h2>
+      <rnd-dropdown-menu label="Actions">
+        <rnd-dropdown-item>View details</rnd-dropdown-item>
+        <rnd-dropdown-item>Copy address</rnd-dropdown-item>
+        <rnd-dropdown-item>Disconnect</rnd-dropdown-item>
+      </rnd-dropdown-menu>
+    </section>
+
+    <section
+      id="hover-card"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Hover Card</h2>
+      <rnd-hover-card>
+        <a
+          rndHoverCardTrigger
+          href="javascript:void(0)"
+          class="text-sm font-medium text-primary hover:underline"
+        >
+          @satoshi
+        </a>
+        <div class="flex flex-col gap-2">
+          <rnd-avatar initials="SN" size="md" />
+          <p class="font-heading text-sm font-semibold text-foreground">Satoshi Nakamoto</p>
+          <p class="text-xs text-muted">Pseudonymous creator of Bitcoin. Joined 2009.</p>
+        </div>
+      </rnd-hover-card>
+    </section>
+
+    <section
+      id="tooltip"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6 lg:col-span-2"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Tooltip</h2>
+      <div class="flex flex-wrap items-center gap-12 py-8">
+        <rnd-tooltip text="Top tooltip" placement="top">
+          <rnd-button variant="outline" size="sm">Top</rnd-button>
+        </rnd-tooltip>
+        <rnd-tooltip text="Bottom tooltip" placement="bottom">
+          <rnd-button variant="outline" size="sm">Bottom</rnd-button>
+        </rnd-tooltip>
+        <rnd-tooltip text="Left tooltip" placement="left">
+          <rnd-button variant="outline" size="sm">Left</rnd-button>
+        </rnd-tooltip>
+        <rnd-tooltip text="Right tooltip" placement="right">
+          <rnd-button variant="outline" size="sm">Right</rnd-button>
+        </rnd-tooltip>
+      </div>
+    </section>
+
+    <section
+      id="popover"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Popover</h2>
+      <rnd-popover>
+        <rnd-button rndPopoverTrigger variant="outline">Filter</rnd-button>
+        <div class="flex flex-col gap-3">
+          <h3 class="font-heading text-sm font-semibold">Filter by status</h3>
+          <p class="text-sm text-muted">
+            Arbitrary rich content can go here — forms, swatches, anything.
+          </p>
+        </div>
+      </rnd-popover>
+    </section>
+
+    <section
+      id="combobox"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Combobox</h2>
+      <rnd-combobox [options]="comboboxOptions" placeholder="Search assets..." />
+    </section>
+
+    <section
+      id="toast"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Toast</h2>
+      <div class="flex flex-wrap gap-3">
+        <rnd-button variant="outline" (click)="showInfo()">Show info</rnd-button>
+        <rnd-button variant="outline" (click)="showSuccess()">Show success</rnd-button>
+        <rnd-button variant="outline" (click)="showWarning()">Show warning</rnd-button>
+        <rnd-button variant="outline" (click)="showError()">Show error</rnd-button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<rnd-modal [(open)]="modalOpen">
+  <span rndModalHeader>Confirm transaction</span>
+  <p>You're about to send 0.05 BTC. This action cannot be undone.</p>
+  <div rndModalFooter class="flex gap-2">
+    <rnd-button variant="ghost" (click)="modalOpen.set(false)">Cancel</rnd-button>
+    <rnd-button (click)="modalOpen.set(false)">Confirm</rnd-button>
+  </div>
+</rnd-modal>
+
+<rnd-sheet [(open)]="sheetOpen" side="right">
+  <span rndSheetHeader>Wallet details</span>
+  <p>Address, balance, and recent activity for this wallet would appear here.</p>
+  <div rndSheetFooter>
+    <rnd-button variant="ghost" (click)="sheetOpen.set(false)">Close</rnd-button>
+  </div>
+</rnd-sheet>
+
+<rnd-command-palette
+  [(open)]="commandPaletteOpen"
+  [items]="commandPaletteItems"
+  (select)="onCommandSelect($event)"
+/>

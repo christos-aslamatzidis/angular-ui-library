@@ -1,0 +1,10 @@
+<span #trigger class="inline-flex" (click)="onTriggerClick()">
+  <ng-content select="[rndPopoverTrigger]" />
+</span>
+<div
+  #panel
+  popover
+  class="m-0 min-w-56 rounded-xl border border-border bg-[#0f1115]/95 p-4 text-foreground backdrop-blur-lg"
+>
+  <ng-content />
+</div>

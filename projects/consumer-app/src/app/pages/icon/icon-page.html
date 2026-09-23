@@ -1,0 +1,43 @@
+<div class="flex flex-col gap-10">
+  <h1 class="font-heading text-3xl font-semibold">Icon</h1>
+
+  <section class="flex flex-col gap-4">
+    <h2 class="font-heading text-lg text-muted">Weights</h2>
+    <div class="flex items-center gap-6">
+      @for (weight of weights; track weight) {
+        <div class="flex flex-col items-center gap-2">
+          <rnd-icon name="bell" [weight]="weight" [size]="32" />
+          <span class="font-mono text-xs text-muted">{{ weight }}</span>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-4">
+    <h2 class="font-heading text-lg text-muted">Theme variants</h2>
+    <div class="flex flex-wrap items-center gap-6">
+      @for (variant of variants; track variant) {
+        <div class="flex flex-col items-center gap-2">
+          <rnd-icon name="check-circle" weight="solid" [variant]="variant" [size]="28" />
+          <span class="font-mono text-xs text-muted">{{ variant }}</span>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-4">
+    <h2 class="font-heading text-lg text-muted">All icons ({{ iconNames.length }})</h2>
+    <div class="grid grid-cols-6 gap-6 sm:grid-cols-8 lg:grid-cols-10">
+      @for (name of iconNames; track name) {
+        <div class="flex flex-col items-center gap-2 rounded-xl border border-border p-3">
+          <div class="flex items-center gap-2">
+            <rnd-icon [name]="name" weight="outline" [size]="20" />
+            <rnd-icon [name]="name" weight="solid" [size]="20" />
+            <rnd-icon [name]="name" weight="duotone" [size]="20" variant="primary" />
+          </div>
+          <span class="text-center font-mono text-[10px] text-muted">{{ name }}</span>
+        </div>
+      }
+    </div>
+  </section>
+</div>

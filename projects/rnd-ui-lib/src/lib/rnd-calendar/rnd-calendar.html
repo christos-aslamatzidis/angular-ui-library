@@ -1,0 +1,33 @@
+<div
+  class="w-72 rounded-2xl border border-border bg-[#0f1115]/95 p-4 text-foreground backdrop-blur-lg"
+>
+  <div class="mb-4 flex items-center justify-between">
+    <button
+      type="button"
+      class="rounded-full p-1.5 text-muted transition-colors hover:bg-white/10 hover:text-foreground"
+      aria-label="Previous month"
+      (click)="previousMonth()"
+    >
+      <rnd-icon name="chevron-left" [size]="16" />
+    </button>
+    <span class="font-heading text-sm font-semibold">{{ monthLabel() }}</span>
+    <button
+      type="button"
+      class="rounded-full p-1.5 text-muted transition-colors hover:bg-white/10 hover:text-foreground"
+      aria-label="Next month"
+      (click)="nextMonth()"
+    >
+      <rnd-icon name="chevron-right" [size]="16" />
+    </button>
+  </div>
+  <div class="grid grid-cols-7 gap-1 text-center">
+    @for (label of weekdayLabels; track label) {
+      <span class="font-mono text-[10px] text-muted uppercase">{{ label }}</span>
+    }
+    @for (day of days(); track day.date.getTime()) {
+      <button type="button" [class]="dayClasses(day)" (click)="selectDay(day)">
+        {{ day.date.getDate() }}
+      </button>
+    }
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="pointer-events-none fixed top-4 right-4 z-50 flex w-full max-w-sm flex-col gap-2">
+  @for (toast of toastService.entries(); track toast.id) {
+    <div class="pointer-events-auto">
+      <rnd-toast
+        [message]="toast.message"
+        [variant]="toast.variant"
+        (dismiss)="toastService.dismiss(toast.id)"
+      />
+    </div>
+  }
+</div>

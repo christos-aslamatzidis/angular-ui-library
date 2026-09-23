@@ -1,0 +1,20 @@
+<div [class]="containerClasses()">
+  <select
+    [value]="value()"
+    [disabled]="disabled()"
+    (change)="onChange($event)"
+    class="w-full appearance-none bg-transparent pr-6 text-sm text-white focus:outline-none disabled:cursor-not-allowed"
+  >
+    @if (placeholder()) {
+      <option value="" disabled>{{ placeholder() }}</option>
+    }
+    @for (option of options(); track option.value) {
+      <option [value]="option.value">{{ option.label }}</option>
+    }
+  </select>
+  <rnd-icon
+    name="chevron-down"
+    [size]="16"
+    class="pointer-events-none absolute right-4 text-white/50"
+  />
+</div>

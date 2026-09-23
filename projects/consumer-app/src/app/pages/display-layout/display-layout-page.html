@@ -1,0 +1,230 @@
+<div class="flex flex-col gap-6">
+  <h1 class="font-heading text-3xl font-semibold">Display & Layout</h1>
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <section
+      id="avatar"
+      class="scroll-mt-24 flex flex-col gap-6 rounded-2xl border border-border p-6 lg:col-span-2"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Avatar</h2>
+
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Sizes</h3>
+        <div class="flex flex-wrap items-center gap-4">
+          <rnd-avatar size="xs" initials="SK" />
+          <rnd-avatar size="sm" initials="SK" />
+          <rnd-avatar size="md" initials="SK" />
+          <rnd-avatar size="lg" initials="SK" />
+          <rnd-avatar size="xl" initials="SK" />
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Status</h3>
+        <div class="flex flex-wrap items-center gap-4">
+          <rnd-avatar initials="ON" status="online" />
+          <rnd-avatar initials="AW" status="away" />
+          <rnd-avatar initials="OF" status="offline" />
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Image with fallback</h3>
+        <div class="flex flex-wrap items-center gap-4">
+          <rnd-avatar src="https://broken-image-url.invalid/avatar.png" initials="FB" />
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="avatar-group"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Avatar Group</h2>
+      <rnd-avatar-group [overflowCount]="3">
+        <rnd-avatar initials="AB" />
+        <rnd-avatar initials="CD" />
+        <rnd-avatar initials="EF" />
+      </rnd-avatar-group>
+    </section>
+
+    <section id="kbd" class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6">
+      <h2 class="font-heading text-2xl font-semibold">Kbd</h2>
+      <div class="flex flex-wrap items-center gap-3">
+        <rnd-kbd>⌘K</rnd-kbd>
+        <rnd-kbd>Ctrl</rnd-kbd>
+        <rnd-kbd>Esc</rnd-kbd>
+        <rnd-kbd>Enter</rnd-kbd>
+      </div>
+    </section>
+
+    <section
+      id="badge"
+      class="scroll-mt-24 flex flex-col gap-6 rounded-2xl border border-border p-6 lg:col-span-2"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Badge</h2>
+
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Variants</h3>
+        <div class="flex flex-wrap items-center gap-3">
+          <rnd-badge variant="primary">Primary</rnd-badge>
+          <rnd-badge variant="secondary">Secondary</rnd-badge>
+          <rnd-badge variant="accent">Accent</rnd-badge>
+          <rnd-badge variant="outline">Outline</rnd-badge>
+          <rnd-badge variant="muted">Muted</rnd-badge>
+          <rnd-badge variant="success">Success</rnd-badge>
+          <rnd-badge variant="warning">Warning</rnd-badge>
+          <rnd-badge variant="error">Error</rnd-badge>
+          <rnd-badge variant="info">Info</rnd-badge>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Sizes</h3>
+        <div class="flex flex-wrap items-center gap-3">
+          <rnd-badge size="sm">Small</rnd-badge>
+          <rnd-badge size="md">Medium</rnd-badge>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Live indicator</h3>
+        <div class="flex flex-wrap items-center gap-3">
+          <rnd-badge variant="success" [dot]="true">Live</rnd-badge>
+          <rnd-badge variant="error" [dot]="true">Offline</rnd-badge>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Removable</h3>
+        <div class="flex flex-wrap items-center gap-3">
+          <rnd-badge variant="outline" [removable]="true">BTC</rnd-badge>
+          <rnd-badge variant="outline" [removable]="true">ETH</rnd-badge>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="card"
+      class="scroll-mt-24 flex flex-col gap-6 rounded-2xl border border-border p-6 lg:col-span-2"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Card</h2>
+
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Standard, hoverable</h3>
+        <div class="grid max-w-md gap-6">
+          <rnd-card [hoverable]="true">
+            <div rndCardHeader class="p-8 pb-4">
+              <h4 class="font-heading text-2xl font-semibold">Lightning Wallet</h4>
+              <p class="mt-1 text-sm text-muted">Instant, low-fee Bitcoin payments.</p>
+            </div>
+            <div rndCardContent class="p-8 pt-0">
+              <p class="text-sm text-muted">
+                Send and receive sats in milliseconds, with fees measured in fractions of a cent.
+              </p>
+            </div>
+            <div rndCardFooter class="flex items-center justify-between p-8 pt-0">
+              <rnd-badge variant="accent">New</rnd-badge>
+              <rnd-button size="sm">Open</rnd-button>
+            </div>
+          </rnd-card>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Glass</h3>
+        <div class="grid max-w-md gap-6">
+          <rnd-card variant="glass">
+            <div rndCardContent class="p-8">
+              <p class="font-mono text-sm text-muted">Floating / overlay surface</p>
+            </div>
+          </rnd-card>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="divider"
+      class="scroll-mt-24 flex flex-col gap-6 rounded-2xl border border-border p-6 lg:col-span-2"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Divider</h2>
+
+      <div class="flex max-w-md flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Horizontal</h3>
+        <p class="text-sm text-muted">Above</p>
+        <rnd-divider />
+        <p class="text-sm text-muted">Below</p>
+      </div>
+
+      <div class="flex max-w-md flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Labeled</h3>
+        <rnd-divider label="OR" />
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Vertical</h3>
+        <div class="flex h-10 items-center gap-4">
+          <span class="text-sm text-muted">Left</span>
+          <rnd-divider orientation="vertical" />
+          <span class="text-sm text-muted">Right</span>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="accordion"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Accordion</h2>
+      <h3 class="font-heading text-lg text-muted">Single open (default)</h3>
+      <rnd-accordion [expandedValues]="['fees']">
+        <rnd-accordion-item value="fees" label="What are network fees?">
+          Network fees are paid to miners to confirm your transaction on-chain.
+        </rnd-accordion-item>
+        <rnd-accordion-item value="custody" label="Is this wallet custodial?">
+          No, you hold your own private keys at all times.
+        </rnd-accordion-item>
+        <rnd-accordion-item value="support" label="Which assets are supported?">
+          Bitcoin, Lightning, and select Layer 2 networks.
+        </rnd-accordion-item>
+      </rnd-accordion>
+    </section>
+
+    <section
+      id="collapsible"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Collapsible</h2>
+      <rnd-collapsible label="Show advanced options">
+        <p>Custom fee rate, RBF, and coin selection controls would go here.</p>
+      </rnd-collapsible>
+    </section>
+
+    <section
+      id="table"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6 lg:col-span-2"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Table</h2>
+      <rnd-table>
+        <thead
+          class="border-b border-border bg-white/5 font-mono text-xs tracking-wider text-muted uppercase"
+        >
+          <tr>
+            <th class="p-4 font-medium">Hash</th>
+            <th class="p-4 font-medium">Amount</th>
+            <th class="p-4 font-medium">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (tx of transactions; track tx.hash) {
+            <tr class="border-b border-border/50 last:border-b-0 hover:bg-white/5">
+              <td class="p-4 font-mono">{{ tx.hash }}</td>
+              <td class="p-4">{{ tx.amount }}</td>
+              <td class="p-4 text-muted">{{ tx.status }}</td>
+            </tr>
+          }
+        </tbody>
+      </rnd-table>
+    </section>
+  </div>
+</div>

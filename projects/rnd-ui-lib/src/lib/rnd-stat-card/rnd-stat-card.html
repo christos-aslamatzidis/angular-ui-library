@@ -1,0 +1,19 @@
+<div class="flex flex-col gap-3 rounded-2xl border border-border bg-surface p-6">
+  <div class="flex items-center gap-3">
+    <ng-content select="[rndStatCardIcon]" />
+    <span class="font-mono text-xs tracking-wider text-muted uppercase">{{ label() }}</span>
+  </div>
+  <div class="flex items-baseline gap-2">
+    <span class="font-heading text-2xl font-semibold text-foreground">{{ value() }}</span>
+    @if (delta() !== undefined) {
+      <span class="flex items-center gap-0.5 text-xs font-medium" [class]="deltaClasses()">
+        @if (resolvedTrend() === 'up') {
+          <rnd-icon name="chevron-up" [size]="12" />
+        } @else if (resolvedTrend() === 'down') {
+          <rnd-icon name="chevron-down" [size]="12" />
+        }
+        {{ delta() }}%
+      </span>
+    }
+  </div>
+</div>

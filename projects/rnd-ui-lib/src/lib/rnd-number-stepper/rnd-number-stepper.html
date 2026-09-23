@@ -1,0 +1,28 @@
+<div
+  class="inline-flex h-12 items-stretch overflow-hidden rounded-lg border-b-2 border-white/20 bg-black/50"
+>
+  <button
+    type="button"
+    class="flex w-10 items-center justify-center text-white transition-colors hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+    [disabled]="!canDecrement()"
+    (click)="decrement()"
+  >
+    <rnd-icon name="minus" [size]="14" />
+  </button>
+  <input
+    type="text"
+    inputmode="decimal"
+    class="w-16 bg-transparent text-center text-sm text-white focus:outline-none"
+    [value]="value()"
+    [disabled]="disabled()"
+    (change)="onInput($event)"
+  />
+  <button
+    type="button"
+    class="flex w-10 items-center justify-center text-white transition-colors hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+    [disabled]="!canIncrement()"
+    (click)="increment()"
+  >
+    <rnd-icon name="plus" [size]="14" />
+  </button>
+</div>

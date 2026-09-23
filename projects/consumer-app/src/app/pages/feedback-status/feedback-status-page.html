@@ -1,0 +1,147 @@
+<div class="flex flex-col gap-6">
+  <h1 class="font-heading text-3xl font-semibold">Feedback & Status</h1>
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <section
+      id="alert"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Alert</h2>
+      <rnd-alert variant="info">Network fees are updated every 10 minutes.</rnd-alert>
+      <rnd-alert variant="success">Transaction confirmed on-chain.</rnd-alert>
+      <rnd-alert variant="warning">Wallet balance is running low.</rnd-alert>
+      <rnd-alert variant="error" [dismissible]="true">Failed to broadcast transaction.</rnd-alert>
+    </section>
+
+    <section
+      id="progress-bar"
+      class="scroll-mt-24 flex flex-col gap-6 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Progress Bar</h2>
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Sizes</h3>
+        <rnd-progress-bar [value]="35" size="sm" />
+        <rnd-progress-bar [value]="60" size="md" />
+        <rnd-progress-bar [value]="85" size="lg" />
+      </div>
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Indeterminate</h3>
+        <rnd-progress-bar [indeterminate]="true" />
+      </div>
+    </section>
+
+    <section
+      id="radial-progress"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Radial Progress</h2>
+      <div class="flex flex-wrap items-center gap-6">
+        <rnd-radial-progress [value]="25" />
+        <rnd-radial-progress [value]="60" />
+        <rnd-radial-progress [value]="90" [size]="120" [strokeWidth]="10" />
+      </div>
+    </section>
+
+    <section
+      id="sparkline"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Sparkline</h2>
+      <div class="flex flex-wrap items-center gap-8">
+        <rnd-sparkline [data]="sparklineUpData" trend="up" />
+        <rnd-sparkline [data]="sparklineDownData" trend="down" />
+      </div>
+    </section>
+
+    <section
+      id="skeleton"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Skeleton</h2>
+      <h3 class="font-heading text-lg text-muted">Card placeholder</h3>
+      <div class="flex items-center gap-4">
+        <rnd-skeleton shape="circle" width="3rem" height="3rem" />
+        <div class="flex flex-1 flex-col gap-2">
+          <rnd-skeleton shape="text" width="60%" />
+          <rnd-skeleton shape="text" width="90%" />
+        </div>
+      </div>
+      <rnd-skeleton shape="rect" width="100%" height="8rem" />
+    </section>
+
+    <section
+      id="spinner"
+      class="scroll-mt-24 flex flex-col gap-6 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Spinner</h2>
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Sizes</h3>
+        <div class="flex items-center gap-4">
+          <rnd-spinner size="sm" />
+          <rnd-spinner size="md" />
+          <rnd-spinner size="lg" />
+        </div>
+      </div>
+      <div class="flex flex-col gap-4">
+        <h3 class="font-heading text-lg text-muted">Variants</h3>
+        <div class="flex items-center gap-4">
+          <rnd-spinner variant="primary" />
+          <rnd-spinner variant="foreground" />
+          <rnd-spinner variant="muted" />
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="stat-card"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6 lg:col-span-2"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Stat Card</h2>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <rnd-stat-card label="BTC Price" value="$96,420" [delta]="2.4" />
+        <rnd-stat-card label="Portfolio" value="0.42 BTC" [delta]="-1.1" />
+        <rnd-stat-card label="Network Fee" value="12 sat/vB" trend="neutral" />
+      </div>
+    </section>
+
+    <section
+      id="timeline"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Timeline</h2>
+      <rnd-timeline>
+        <rnd-timeline-item
+          [step]="1"
+          title="Connect wallet"
+          description="Link your self-custody wallet."
+        />
+        <rnd-timeline-item
+          [step]="2"
+          title="Fund address"
+          description="Send BTC to your generated address."
+        />
+        <rnd-timeline-item
+          [step]="3"
+          title="Confirm on-chain"
+          description="Wait for network confirmations."
+        />
+      </rnd-timeline>
+    </section>
+
+    <section
+      id="empty-state"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Empty State</h2>
+      <div class="rounded-2xl border border-border">
+        <rnd-empty-state
+          title="No transactions yet"
+          description="Once you send or receive BTC, it will show up here."
+        >
+          <rnd-icon rndEmptyStateIcon name="list" [size]="40" variant="muted" />
+          <rnd-button rndEmptyStateAction size="sm">Send BTC</rnd-button>
+        </rnd-empty-state>
+      </div>
+    </section>
+  </div>
+</div>

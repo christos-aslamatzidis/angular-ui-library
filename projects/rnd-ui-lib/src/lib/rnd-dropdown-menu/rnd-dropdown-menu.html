@@ -1,0 +1,18 @@
+<button
+  #trigger
+  type="button"
+  [attr.popovertarget]="menuId"
+  class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-transparent px-4 py-2 text-sm font-medium text-white transition-colors hover:border-white hover:bg-white/10"
+>
+  {{ label() }}
+  <rnd-icon name="chevron-down" [size]="14" />
+</button>
+<div
+  #panel
+  [id]="menuId"
+  popover
+  (toggle)="onToggle($event)"
+  class="m-0 min-w-40 rounded-xl border border-border bg-[#0f1115]/95 p-1.5 text-foreground backdrop-blur-lg"
+>
+  <ng-content />
+</div>

@@ -1,0 +1,9 @@
+<div
+  [class]="trackClasses()"
+  role="progressbar"
+  [attr.aria-valuenow]="indeterminate() ? null : widthPercent()"
+  aria-valuemin="0"
+  aria-valuemax="100"
+>
+  <div [class]="fillClasses()" [style.width.%]="indeterminate() ? null : widthPercent()"></div>
+</div>

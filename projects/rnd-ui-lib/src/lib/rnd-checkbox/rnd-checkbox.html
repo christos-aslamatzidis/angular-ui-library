@@ -1,0 +1,25 @@
+<label
+  class="inline-flex items-center gap-2"
+  [class.cursor-not-allowed]="disabled()"
+  [class.cursor-pointer]="!disabled()"
+>
+  <span class="relative inline-flex">
+    <input
+      type="checkbox"
+      class="peer absolute h-5 w-5 cursor-pointer opacity-0 disabled:cursor-not-allowed"
+      [checked]="checked()"
+      [disabled]="disabled()"
+      (change)="onChange($event)"
+    />
+    <span [class]="boxClasses()">
+      @if (indeterminate()) {
+        <span class="h-0.5 w-2.5 rounded-full bg-primary-foreground"></span>
+      } @else if (checked()) {
+        <rnd-icon name="check" [size]="12" class="text-primary-foreground" />
+      }
+    </span>
+  </span>
+  @if (label()) {
+    <span class="text-sm text-foreground">{{ label() }}</span>
+  }
+</label>

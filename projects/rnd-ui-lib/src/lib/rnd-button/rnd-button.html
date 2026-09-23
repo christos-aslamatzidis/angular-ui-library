@@ -1,0 +1,5 @@
+<button [attr.aria-label]="ariaLabel()" [class]="classes()" [disabled]="disabled()" [type]="type()">
+  <ng-content select="[rndIconLeading]" />
+  <ng-content />
+  <ng-content select="[rndIconTrailing]" />
+</button>

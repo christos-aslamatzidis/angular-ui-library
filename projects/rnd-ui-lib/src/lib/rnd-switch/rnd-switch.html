@@ -1,0 +1,14 @@
+<button
+  type="button"
+  role="switch"
+  [attr.aria-checked]="checked()"
+  [attr.aria-label]="ariaLabel()"
+  [disabled]="disabled()"
+  [class]="trackClasses()"
+  (click)="toggle()"
+>
+  <span
+    class="inline-block h-5 w-5 transform rounded-full shadow transition-transform duration-300"
+    [class]="thumbClasses()"
+  ></span>
+</button>

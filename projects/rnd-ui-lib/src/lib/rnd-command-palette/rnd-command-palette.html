@@ -1,0 +1,36 @@
+<dialog
+  #dialog
+  class="m-auto mt-24 w-full max-w-lg rounded-2xl border border-border bg-[#0f1115]/95 p-0 text-foreground backdrop-blur-lg backdrop:bg-black/60"
+  (close)="onDialogClose()"
+>
+  <div class="flex items-center gap-2 border-b border-border px-4 py-3">
+    <rnd-icon name="search" [size]="16" class="shrink-0 text-muted" />
+    <input
+      type="text"
+      placeholder="Type a command or search..."
+      class="w-full bg-transparent text-sm text-white focus:outline-none placeholder:text-white/30"
+      [value]="query()"
+      (input)="onQueryInput($event)"
+      (keydown)="onListKeydown($event)"
+    />
+    <rnd-kbd>ESC</rnd-kbd>
+  </div>
+  <div class="max-h-80 overflow-y-auto p-2">
+    @for (item of filteredItems(); track item.id; let i = $index) {
+      <button
+        type="button"
+        class="flex w-full flex-col items-start gap-0.5 rounded-lg px-3 py-2 text-left transition-colors"
+        [class.bg-white/10]="i === highlightedIndex()"
+        (mouseenter)="highlightedIndex.set(i)"
+        (click)="chooseItem(item.id)"
+      >
+        <span class="text-sm text-foreground">{{ item.label }}</span>
+        @if (item.description) {
+          <span class="text-xs text-muted">{{ item.description }}</span>
+        }
+      </button>
+    } @empty {
+      <p class="px-3 py-6 text-center text-sm text-muted">No results found.</p>
+    }
+  </div>
+</dialog>

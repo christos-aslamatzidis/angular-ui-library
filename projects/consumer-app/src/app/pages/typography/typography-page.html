@@ -1,0 +1,127 @@
+<div class="flex flex-col gap-10">
+  <h1 class="font-heading text-3xl font-semibold">Typography</h1>
+
+  <section class="flex flex-col gap-4">
+    <h2 class="font-heading text-lg text-muted">Font families</h2>
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div class="flex flex-col gap-3 rounded-xl border border-border p-6">
+        <div class="flex flex-col gap-0.5">
+          <span class="font-mono text-xs text-muted">--font-heading · font-heading</span>
+          <span class="text-sm text-muted">Space Grotesk</span>
+        </div>
+        <span class="font-heading text-3xl">Aa Bb Cc 123</span>
+      </div>
+      <div class="flex flex-col gap-3 rounded-xl border border-border p-6">
+        <div class="flex flex-col gap-0.5">
+          <span class="font-mono text-xs text-muted">--font-body · font-body</span>
+          <span class="text-sm text-muted">Inter</span>
+        </div>
+        <span class="font-body text-3xl">Aa Bb Cc 123</span>
+      </div>
+      <div class="flex flex-col gap-3 rounded-xl border border-border p-6">
+        <div class="flex flex-col gap-0.5">
+          <span class="font-mono text-xs text-muted">--font-mono · font-mono</span>
+          <span class="text-sm text-muted">JetBrains Mono</span>
+        </div>
+        <span class="font-mono text-3xl">Aa Bb Cc 123</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-4">
+    <h2 class="font-heading text-lg text-muted">Weights</h2>
+
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-3">
+        <span class="font-mono text-xs text-muted">font-heading (Space Grotesk)</span>
+        <div class="flex flex-col gap-2 rounded-xl border border-border p-6">
+          @for (w of headingWeights; track w.weight) {
+            <div class="flex items-center gap-4">
+              <span class="w-28 shrink-0 font-mono text-xs text-muted"
+                >{{ w.weight }} · {{ w.class }}</span
+              >
+              <span class="font-heading text-xl" [class]="w.class">The quick brown fox jumps</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <span class="font-mono text-xs text-muted">font-body (Inter)</span>
+        <div class="flex flex-col gap-2 rounded-xl border border-border p-6">
+          @for (w of bodyWeights; track w.weight) {
+            <div class="flex items-center gap-4">
+              <span class="w-28 shrink-0 font-mono text-xs text-muted"
+                >{{ w.weight }} · {{ w.class }}</span
+              >
+              <span class="font-body text-xl" [class]="w.class">The quick brown fox jumps</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <span class="font-mono text-xs text-muted">font-mono (JetBrains Mono)</span>
+        <div class="flex flex-col gap-2 rounded-xl border border-border p-6">
+          @for (w of monoWeights; track w.weight) {
+            <div class="flex items-center gap-4">
+              <span class="w-28 shrink-0 font-mono text-xs text-muted"
+                >{{ w.weight }} · {{ w.class }}</span
+              >
+              <span class="font-mono text-xl" [class]="w.class">The quick brown fox jumps</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-4">
+    <h2 class="font-heading text-lg text-muted">Type scale</h2>
+
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-3">
+        <span class="font-mono text-xs text-muted">Headings — font-heading font-semibold</span>
+        <div class="flex flex-col gap-3 rounded-xl border border-border p-6">
+          @for (step of headingScale; track step.class) {
+            <div class="flex items-center gap-4">
+              <span class="w-20 shrink-0 font-mono text-xs text-muted">{{ step.label }}</span>
+              <span class="font-heading font-semibold" [class]="step.class"
+                >Bitcoin DeFi, reimagined</span
+              >
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <span class="font-mono text-xs text-muted">Body — font-body</span>
+        <div class="flex flex-col gap-3 rounded-xl border border-border p-6">
+          @for (step of bodyScale; track step.class) {
+            <div class="flex items-center gap-4">
+              <span class="w-20 shrink-0 font-mono text-xs text-muted">{{ step.label }}</span>
+              <span class="font-body text-foreground" [class]="step.class"
+                >Track your portfolio, swap assets, and manage your wallet.</span
+              >
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flex max-w-lg flex-col gap-4">
+    <h2 class="font-heading text-lg text-muted">Code</h2>
+    <div class="flex flex-col gap-3 rounded-xl border border-border p-6">
+      <p class="font-body text-sm text-muted">
+        Inline code uses <code class="font-mono text-sm text-primary">font-mono font-medium</code>.
+      </p>
+      <pre
+        class="overflow-x-auto rounded-lg bg-surface p-4 font-mono text-sm font-normal text-foreground"
+      ><code>&#123;
+  "network": "bitcoin",
+  "confirmations": 3
+&#125;</code></pre>
+    </div>
+  </section>
+</div>

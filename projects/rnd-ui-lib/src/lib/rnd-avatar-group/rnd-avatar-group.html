@@ -1,0 +1,10 @@
+<div class="flex -space-x-3">
+  <ng-content />
+  @if (overflowCount() > 0) {
+    <span
+      class="relative inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-background bg-surface font-heading text-xs font-medium text-muted"
+    >
+      +{{ overflowCount() }}
+    </span>
+  }
+</div>

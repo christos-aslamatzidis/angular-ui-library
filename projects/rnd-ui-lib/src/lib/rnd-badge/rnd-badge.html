@@ -1,0 +1,22 @@
+<span [class]="classes()">
+  @if (dot()) {
+    <span class="relative flex h-1.5 w-1.5">
+      <span
+        class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
+        [class]="dotClasses()"
+      ></span>
+      <span class="relative inline-flex h-1.5 w-1.5 rounded-full" [class]="dotClasses()"></span>
+    </span>
+  }
+  <ng-content />
+  @if (removable()) {
+    <button
+      type="button"
+      class="-mr-1 inline-flex items-center justify-center rounded-full p-0.5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      aria-label="Remove"
+      (click)="onRemove($event)"
+    >
+      <rnd-icon name="close" [size]="10" />
+    </button>
+  }
+</span>

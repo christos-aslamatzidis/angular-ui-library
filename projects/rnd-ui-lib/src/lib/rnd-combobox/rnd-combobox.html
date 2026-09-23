@@ -1,0 +1,30 @@
+<div class="relative">
+  <input
+    #trigger
+    type="text"
+    class="h-12 w-full border-b-2 border-white/20 bg-black/50 px-4 text-sm text-white transition-all duration-200 focus:border-primary focus:outline-none"
+    [placeholder]="placeholder()"
+    [value]="query() || selectedLabel()"
+    (focus)="onFocus()"
+    (input)="onInput($event)"
+    (keydown)="onKeydown($event)"
+  />
+  <div
+    #panel
+    popover
+    class="m-0 max-h-64 overflow-y-auto rounded-xl border border-border bg-[#0f1115]/95 p-1.5 text-foreground backdrop-blur-lg"
+  >
+    @for (option of filteredOptions(); track option.value; let i = $index) {
+      <button
+        type="button"
+        class="flex w-full items-center rounded-lg px-3 py-2 text-left text-sm transition-colors"
+        [class.bg-white/10]="i === highlightedIndex()"
+        (click)="chooseOption(option)"
+      >
+        {{ option.label }}
+      </button>
+    } @empty {
+      <p class="px-3 py-4 text-center text-sm text-muted">No matches.</p>
+    }
+  </div>
+</div>

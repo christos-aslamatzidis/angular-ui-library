@@ -1,0 +1,27 @@
+<div class="inline-flex rounded-full shadow-[0_0_20px_-5px_rgba(234,88,12,0.5)]">
+  <button
+    type="button"
+    class="rounded-l-full bg-gradient-to-r from-secondary to-primary px-6 py-2.5 text-sm font-semibold tracking-wider text-white uppercase transition-transform hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
+    [disabled]="disabled()"
+    (click)="action.emit()"
+  >
+    {{ label() }}
+  </button>
+  <button
+    #trigger
+    type="button"
+    class="rounded-r-full border-l border-white/20 bg-gradient-to-r from-secondary to-primary px-3 text-white transition-transform hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
+    [disabled]="disabled()"
+    aria-label="More actions"
+    (click)="onToggleClick()"
+  >
+    <rnd-icon name="chevron-down" [size]="14" />
+  </button>
+</div>
+<div
+  #panel
+  popover
+  class="m-0 min-w-40 rounded-xl border border-border bg-[#0f1115]/95 p-1.5 text-foreground backdrop-blur-lg"
+>
+  <ng-content />
+</div>

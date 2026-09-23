@@ -1,0 +1,144 @@
+<div class="flex flex-col gap-6">
+  <h1 class="font-heading text-3xl font-semibold">Form Inputs</h1>
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <section
+      id="input"
+      class="scroll-mt-24 flex flex-col gap-6 rounded-2xl border border-border p-6 lg:col-span-2"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Input</h2>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div class="flex flex-col gap-4">
+          <h3 class="font-heading text-lg text-muted">States</h3>
+          <div class="flex flex-col gap-3">
+            <rnd-input placeholder="Wallet address" />
+            <rnd-input placeholder="Invalid amount" [invalid]="true" />
+            <rnd-input placeholder="Disabled" [disabled]="true" />
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <h3 class="font-heading text-lg text-muted">With prefix/suffix</h3>
+          <rnd-input placeholder="0.00" type="number">
+            <span rndInputPrefix class="font-mono text-sm text-muted">BTC</span>
+          </rnd-input>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="textarea"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Textarea</h2>
+      <rnd-textarea placeholder="Transaction memo" [rows]="4" />
+    </section>
+
+    <section
+      id="password-input"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Password Input</h2>
+      <rnd-password-input placeholder="Enter your password" />
+    </section>
+
+    <section
+      id="search-input"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Search Input</h2>
+      <rnd-search-input placeholder="Search transactions..." />
+    </section>
+
+    <section
+      id="number-stepper"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Number Stepper</h2>
+      <rnd-number-stepper [value]="1" [min]="1" [max]="10" />
+    </section>
+
+    <section
+      id="input-otp"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Input OTP</h2>
+      <rnd-input-otp [length]="6" />
+    </section>
+
+    <section
+      id="tag-input"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Tag Input</h2>
+      <rnd-tag-input [tags]="['bc1q...4k2']" placeholder="Add watched address..." />
+    </section>
+
+    <section
+      id="select"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Select</h2>
+      <rnd-select [options]="selectOptions" placeholder="Choose an asset" />
+    </section>
+
+    <section
+      id="checkbox"
+      class="scroll-mt-24 flex flex-col gap-3 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Checkbox</h2>
+      <rnd-checkbox label="Accept terms" />
+      <rnd-checkbox label="Checked" [checked]="true" />
+      <rnd-checkbox label="Indeterminate" [indeterminate]="true" />
+      <rnd-checkbox label="Disabled" [disabled]="true" />
+    </section>
+
+    <section
+      id="radio"
+      class="scroll-mt-24 flex flex-col gap-3 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Radio Group</h2>
+      <rnd-radio-group value="standard">
+        <rnd-radio-option value="economy" label="Economy" />
+        <rnd-radio-option value="standard" label="Standard" />
+        <rnd-radio-option value="priority" label="Priority" />
+      </rnd-radio-group>
+    </section>
+
+    <section
+      id="switch"
+      class="scroll-mt-24 flex flex-col gap-3 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Switch</h2>
+      <div class="flex items-center gap-4">
+        <rnd-switch ariaLabel="Off" />
+        <rnd-switch ariaLabel="On" [checked]="true" />
+        <rnd-switch ariaLabel="Disabled" [disabled]="true" />
+      </div>
+    </section>
+
+    <section
+      id="form-field"
+      class="scroll-mt-24 flex flex-col gap-6 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Form Field</h2>
+      <rnd-form-field label="Email" hint="We'll never share your email." [required]="true">
+        <rnd-input type="email" placeholder="you@example.com" />
+      </rnd-form-field>
+
+      <rnd-form-field label="Wallet address" error="Invalid Bitcoin address." [required]="true">
+        <rnd-input placeholder="bc1..." [invalid]="true" />
+      </rnd-form-field>
+    </section>
+
+    <section
+      id="slider"
+      class="scroll-mt-24 flex flex-col gap-4 rounded-2xl border border-border p-6"
+    >
+      <h2 class="font-heading text-2xl font-semibold">Slider</h2>
+      <h3 class="font-heading text-lg text-muted">Network fee (sat/vB)</h3>
+      <rnd-slider [value]="25" [min]="1" [max]="50" />
+    </section>
+  </div>
+</div>

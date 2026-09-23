@@ -1,0 +1,10 @@
+<div (contextmenu)="onContextMenu($event)">
+  <ng-content select="[rndContextMenuTrigger]" />
+</div>
+<div
+  #panel
+  popover
+  class="m-0 min-w-48 rounded-xl border border-border bg-[#0f1115]/95 p-1.5 text-foreground backdrop-blur-lg"
+>
+  <ng-content />
+</div>

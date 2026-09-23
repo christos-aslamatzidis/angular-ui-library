@@ -1,0 +1,10 @@
+<button
+  #trigger
+  type="button"
+  class="flex h-12 w-full items-center justify-between border-b-2 border-white/20 bg-black/50 px-4 text-left text-sm text-white transition-all duration-200 focus:border-primary focus:outline-none"
+  (click)="onTriggerClick()"
+>
+  <span [class.text-white/30]="!selected()">{{ formattedDate() || placeholder() }}</span>
+  <rnd-icon name="calendar" [size]="16" class="text-muted" />
+</button>
+<rnd-calendar #panel popover [selected]="selected()" (selectedChange)="onSelect($event)" />

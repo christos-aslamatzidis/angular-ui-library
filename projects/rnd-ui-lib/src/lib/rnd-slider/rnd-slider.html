@@ -1,0 +1,10 @@
+<input
+  type="range"
+  class="rnd-slider-input h-2 w-full cursor-pointer appearance-none rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary"
+  [min]="min()"
+  [max]="max()"
+  [step]="step()"
+  [value]="value()"
+  [style]="trackStyle()"
+  (input)="onInput($event)"
+/>

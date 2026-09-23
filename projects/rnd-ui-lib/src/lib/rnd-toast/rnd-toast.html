@@ -1,0 +1,11 @@
+<div [class]="classes()" role="status">
+  <span class="flex-1">{{ message() }}</span>
+  <button
+    type="button"
+    class="shrink-0 rounded-full p-0.5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+    aria-label="Dismiss"
+    (click)="dismiss.emit()"
+  >
+    <rnd-icon name="close" [size]="12" />
+  </button>
+</div>

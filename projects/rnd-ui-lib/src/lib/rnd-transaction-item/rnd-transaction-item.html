@@ -1,0 +1,17 @@
+<div class="flex items-center gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-white/5">
+  <span [class]="iconWrapperClasses()">
+    <ng-content select="[rndTransactionItemIcon]" />
+  </span>
+  <div class="flex flex-1 flex-col">
+    <span class="font-body text-sm font-medium text-foreground">{{ title() }}</span>
+    @if (timestamp()) {
+      <span class="text-xs text-muted">{{ timestamp() }}</span>
+    }
+  </div>
+  <div class="flex flex-col items-end">
+    <span class="font-mono text-sm font-medium" [class]="amountClasses()"
+      >{{ amountPrefix() }}{{ amount() }}</span
+    >
+    <span class="text-xs font-medium capitalize" [class]="statusClasses()">{{ status() }}</span>
+  </div>
+</div>

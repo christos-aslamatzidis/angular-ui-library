@@ -1,0 +1,10 @@
+<span [class]="classes()">
+  @if (src() && !imageFailed()) {
+    <img [src]="src()" alt="" class="h-full w-full object-cover" (error)="onImageError()" />
+  } @else {
+    <span>{{ initials() }}</span>
+  }
+  @if (status()) {
+    <span [class]="statusClasses()"></span>
+  }
+</span>

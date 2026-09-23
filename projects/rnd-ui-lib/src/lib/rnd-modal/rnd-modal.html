@@ -1,0 +1,16 @@
+<dialog
+  #dialog
+  class="m-auto w-full max-w-md rounded-2xl border border-border bg-[#0f1115]/95 p-0 text-foreground backdrop-blur-lg backdrop:bg-black/60"
+  (close)="onDialogClose()"
+  (click)="onDialogClick($event)"
+>
+  <div class="p-6 pb-4 font-heading text-xl font-semibold">
+    <ng-content select="[rndModalHeader]" />
+  </div>
+  <div class="px-6 pb-6 text-sm text-muted">
+    <ng-content />
+  </div>
+  <div class="flex justify-end gap-2 border-t border-border p-6">
+    <ng-content select="[rndModalFooter]" />
+  </div>
+</dialog>

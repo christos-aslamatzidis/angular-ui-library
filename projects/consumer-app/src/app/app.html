@@ -1,0 +1,39 @@
+<div class="flex min-h-screen flex-col">
+  <rnd-route-progress />
+
+  <rnd-navbar>
+    <a rndNavbarBrand routerLink="/" class="font-heading text-lg font-semibold text-foreground">
+      rnd-ui-lib
+    </a>
+  </rnd-navbar>
+
+  <div class="flex flex-1">
+    <rnd-sidebar>
+      <nav class="flex flex-col gap-6">
+        @for (group of navGroups; track group.title) {
+          <div class="flex flex-col gap-1">
+            <h3 class="px-4 pb-1 font-mono text-xs tracking-wider text-muted uppercase">
+              {{ group.title }}
+            </h3>
+            @for (item of group.items; track item.path) {
+              <a
+                [routerLink]="item.path"
+                routerLinkActive="bg-primary/10 text-primary"
+                class="rounded-lg px-4 py-2 text-sm font-medium text-muted transition-colors hover:bg-white/5 hover:text-foreground"
+              >
+                {{ item.label }}
+              </a>
+            }
+          </div>
+        }
+      </nav>
+    </rnd-sidebar>
+
+    <main class="flex-1 p-12">
+      <router-outlet />
+    </main>
+  </div>
+
+  <rnd-toast-outlet />
+  <rnd-confirm-outlet />
+</div>

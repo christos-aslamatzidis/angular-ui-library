@@ -1,0 +1,25 @@
+<label
+  class="inline-flex items-center gap-2"
+  [class.cursor-not-allowed]="group.disabled()"
+  [class.cursor-pointer]="!group.disabled()"
+>
+  <span class="relative inline-flex">
+    <input
+      type="radio"
+      class="peer absolute h-5 w-5 cursor-pointer opacity-0 disabled:cursor-not-allowed"
+      [name]="group.name()"
+      [value]="value()"
+      [checked]="checked()"
+      [disabled]="group.disabled()"
+      (change)="onChange()"
+    />
+    <span [class]="boxClasses()">
+      @if (checked()) {
+        <span class="h-2 w-2 rounded-full bg-primary"></span>
+      }
+    </span>
+  </span>
+  @if (label()) {
+    <span class="text-sm text-foreground">{{ label() }}</span>
+  }
+</label>

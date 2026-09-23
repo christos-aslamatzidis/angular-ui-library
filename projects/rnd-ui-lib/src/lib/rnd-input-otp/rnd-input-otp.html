@@ -1,0 +1,14 @@
+<div class="flex gap-2">
+  @for (i of cells(); track i) {
+    <input
+      #cellInput
+      type="text"
+      inputmode="numeric"
+      maxlength="1"
+      class="h-12 w-10 rounded-lg border-b-2 border-white/20 bg-black/50 text-center font-mono text-lg text-white transition-all duration-200 focus:border-primary focus:outline-none"
+      [value]="digits()[i]"
+      (input)="onInput($event, i)"
+      (keydown)="onKeydown($event, i)"
+    />
+  }
+</div>

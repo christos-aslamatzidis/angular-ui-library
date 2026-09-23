@@ -1,0 +1,37 @@
+@theme {
+  --color-background: #030304; /* True Void */
+  --color-surface: #0f1115; /* Dark Matter */
+  --color-foreground: #ffffff; /* Pure Light */
+  --color-muted: #94a3b8; /* Stardust */
+  --color-border: #1e293b; /* Dim Boundary */
+
+  --color-primary: #f7931a; /* Bitcoin Orange */
+  --color-primary-foreground: #030304;
+  --color-secondary: #ea580c; /* Burnt Orange */
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #ffd600; /* Digital Gold */
+  --color-accent-foreground: #030304;
+
+  --color-success: #22c55e; /* Emerald */
+  --color-success-foreground: #030304;
+  --color-warning: #f59e0b; /* Amber */
+  --color-warning-foreground: #030304;
+  --color-error: #ef4444; /* Red */
+  --color-error-foreground: #ffffff;
+  --color-info: #38bdf8; /* Sky */
+  --color-info-foreground: #030304;
+
+  --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background font-body text-foreground;
+  }
+}
