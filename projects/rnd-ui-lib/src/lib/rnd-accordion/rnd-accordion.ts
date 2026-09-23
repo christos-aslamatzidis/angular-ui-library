@@ -1,4 +1,4 @@
-import { Component, input, model } from '@angular/core';
+import { Component, computed, input, model } from '@angular/core';
 
 @Component({
   imports: [],
@@ -9,6 +9,13 @@ import { Component, input, model } from '@angular/core';
 export class RndAccordion {
   expandedValues = model<string[]>([]);
   multiple = input(false);
+  flush = input(false);
+
+  protected containerClasses = computed(() =>
+    this.flush()
+      ? 'flex flex-col divide-y divide-border'
+      : 'flex flex-col divide-y divide-border rounded-xl border border-border',
+  );
 
   toggle(value: string): void {
     const current = this.expandedValues();

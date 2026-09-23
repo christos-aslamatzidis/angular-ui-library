@@ -1,4 +1,6 @@
-import { Component, model } from '@angular/core';
+import { Component, computed, input, model } from '@angular/core';
+
+export type RndTabsVariant = 'underline' | 'pills';
 
 @Component({
   imports: [],
@@ -8,4 +10,9 @@ import { Component, model } from '@angular/core';
 })
 export class RndTabs {
   activeValue = model('');
+  variant = input<RndTabsVariant>('underline');
+
+  protected containerClasses = computed(() =>
+    this.variant() === 'pills' ? 'flex items-center gap-2' : 'flex gap-6 border-b border-border',
+  );
 }

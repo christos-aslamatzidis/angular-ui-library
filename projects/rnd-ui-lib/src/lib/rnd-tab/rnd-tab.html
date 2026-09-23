@@ -2,13 +2,11 @@
   type="button"
   role="tab"
   [attr.aria-selected]="active()"
-  class="relative flex items-center gap-2 px-1 pb-3 font-body text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-  [class.text-foreground]="active()"
-  [class.text-muted]="!active()"
+  [class]="classes()"
   (click)="onClick()"
 >
   <ng-content />
-  @if (active()) {
+  @if (active() && tabs.variant() === 'underline') {
     <span
       class="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-gradient-to-r from-secondary to-primary"
     ></span>

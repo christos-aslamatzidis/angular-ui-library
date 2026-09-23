@@ -18,6 +18,8 @@ export class RndProgressBar {
   value = input(0);
   size = input<RndProgressBarSize>('md');
   indeterminate = input(false);
+  striped = input(false);
+  animated = input(false);
 
   protected trackClasses = computed(() =>
     ['w-full overflow-hidden rounded-full bg-surface', TRACK_SIZE_CLASSES[this.size()]].join(' '),
@@ -25,6 +27,16 @@ export class RndProgressBar {
 
   protected fillClasses = computed(() => {
     const classes = ['h-full rounded-full bg-gradient-to-r from-secondary to-primary'];
+
+    if (this.striped()) {
+      classes.push(
+        'bg-[length:1rem_1rem] bg-[linear-gradient(45deg,rgba(255,255,255,.15)_25%,transparent_25%,transparent_50%,rgba(255,255,255,.15)_50%,rgba(255,255,255,.15)_75%,transparent_75%,transparent)]',
+      );
+    }
+
+    if (this.animated()) {
+      classes.push('rnd-progress-bar-animated');
+    }
 
     classes.push(
       this.indeterminate()

@@ -223,6 +223,16 @@
           Bitcoin, Lightning, and select Layer 2 networks.
         </rnd-accordion-item>
       </rnd-accordion>
+
+      <h3 class="font-heading text-lg text-muted">Flush</h3>
+      <rnd-accordion [flush]="true" [expandedValues]="['fees']">
+        <rnd-accordion-item value="fees" label="What are network fees?">
+          Network fees are paid to miners to confirm your transaction on-chain.
+        </rnd-accordion-item>
+        <rnd-accordion-item value="custody" label="Is this wallet custodial?">
+          No, you hold your own private keys at all times.
+        </rnd-accordion-item>
+      </rnd-accordion>
     </section>
 
     <section
@@ -253,6 +263,28 @@
         <tbody>
           @for (tx of transactions; track tx.hash) {
             <tr class="border-b border-border/50 last:border-b-0 hover:bg-white/5">
+              <td class="p-4 font-mono">{{ tx.hash }}</td>
+              <td class="p-4">{{ tx.amount }}</td>
+              <td class="p-4 text-muted">{{ tx.status }}</td>
+            </tr>
+          }
+        </tbody>
+      </rnd-table>
+
+      <h3 class="font-heading text-lg text-muted">Striped + hoverable</h3>
+      <rnd-table [striped]="true" [hoverable]="true">
+        <thead
+          class="border-b border-border bg-white/5 font-mono text-xs tracking-wider text-muted uppercase"
+        >
+          <tr>
+            <th class="p-4 font-medium">Hash</th>
+            <th class="p-4 font-medium">Amount</th>
+            <th class="p-4 font-medium">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (tx of transactions; track tx.hash) {
+            <tr class="border-b border-border/50 last:border-b-0">
               <td class="p-4 font-mono">{{ tx.hash }}</td>
               <td class="p-4">{{ tx.amount }}</td>
               <td class="p-4 text-muted">{{ tx.status }}</td>

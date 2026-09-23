@@ -6,3 +6,16 @@
     transform: translateX(300%);
   }
 }
+
+@keyframes rnd-progress-stripes {
+  from {
+    background-position: 1rem 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+.rnd-progress-bar-animated {
+  animation: rnd-progress-stripes 1s linear infinite;
+}

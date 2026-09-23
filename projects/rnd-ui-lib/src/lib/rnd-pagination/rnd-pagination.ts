@@ -16,10 +16,34 @@ const NAV_BUTTON_CLASSES =
 export class RndPagination {
   page = model(1);
   totalPages = input(1);
+  maxSize = input(0);
+  rotate = input(false);
 
   protected navButtonClasses = NAV_BUTTON_CLASSES;
 
-  protected pages = computed(() => Array.from({ length: this.totalPages() }, (_, i) => i + 1));
+  protected pages = computed(() => {
+    const total = this.totalPages();
+    const size = this.maxSize();
+
+    if (size <= 0 || size >= total) {
+      return Array.from({ length: total }, (_, i) => i + 1);
+    }
+
+    const current = this.page();
+    let start: number;
+
+    if (this.rotate()) {
+      start = Math.max(1, current - Math.floor(size / 2));
+
+      if (start + size - 1 > total) {
+        start = total - size + 1;
+      }
+    } else {
+      start = Math.floor((current - 1) / size) * size + 1;
+    }
+
+    return Array.from({ length: size }, (_, i) => start + i);
+  });
 
   protected pageButtonClasses(p: number): string {
     if (p === this.page()) {

@@ -16,6 +16,9 @@
     >
       <h2 class="font-heading text-2xl font-semibold">Pagination</h2>
       <rnd-pagination [page]="3" [totalPages]="7" />
+
+      <h3 class="font-heading text-lg text-muted">Restricted size + rotate</h3>
+      <rnd-pagination [page]="10" [totalPages]="20" [maxSize]="5" [rotate]="true" />
     </section>
 
     <section
@@ -24,6 +27,13 @@
     >
       <h2 class="font-heading text-2xl font-semibold">Tabs</h2>
       <rnd-tabs activeValue="overview">
+        <rnd-tab value="overview">Overview</rnd-tab>
+        <rnd-tab value="activity">Activity</rnd-tab>
+        <rnd-tab value="settings">Settings</rnd-tab>
+      </rnd-tabs>
+
+      <h3 class="font-heading text-lg text-muted">Pills</h3>
+      <rnd-tabs activeValue="overview" variant="pills">
         <rnd-tab value="overview">Overview</rnd-tab>
         <rnd-tab value="activity">Activity</rnd-tab>
         <rnd-tab value="settings">Settings</rnd-tab>
